@@ -1,65 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { View, Text } from "react-native";
+import { Button } from "react-native-paper";
 
 export default function App() {
+  return <RootNavigation />;
+}
+
+const Stack = createNativeStackNavigator();
+
+function RootNavigation() {
   return (
-    <View style={styles.container}>
-      <HomeScreen />
-      <OlaScreen />
-      <NomeScreen />
-      <FraseScreen />
-    </View>
-    
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+        <Stack.Screen name="AboutScreen" component={AboutScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
 function HomeScreen() {
   return (
     <View>
-      <Text>Sou a HomeScreen.</Text>
-      <Image
-        source={{
-          uri: 'https://artincontext.org/wp-content/uploads/2021/02/How-to-Draw-a-Dragon.jpg'
-        }
-      }
-      style={
-        {
-          height: '300px',
-          width: '300px'
-        }
-      }
-      />
+      <Text>Olá Bem Vindo ao home</Text>
+      <Button mode="contained-tonal">Ir para o sobre</Button>
     </View>
   );
 }
 
-function OlaScreen() {
+function AboutScreen() {
   return (
     <View>
-      <Text>Olá</Text>
+      <Text>Página Sobre</Text>
     </View>
   );
 }
-function NomeScreen() {
-  return (
-    <View>
-      <Text>Meu nome é João Bosco</Text>
-    </View>
-  );
-}
-function FraseScreen() {
-  return (
-    <View>
-      <Text>O sonho que ispira, mas a ação que realiza</Text>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
